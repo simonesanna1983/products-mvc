@@ -1,0 +1,75 @@
+﻿@model IEnumerable<entities.Catalog>
+
+@{
+  ViewBag.Title = "Catalog";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+  @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" width="60%">
+  <tr>
+    <th width="22%"></th>
+    <th>Id</th>
+    <th>Code</th>
+    <th>Description</th>
+    <th>List of products</th>
+
+  </tr>
+
+  @foreach (var item in (IEnumerable<entities.Catalog>)TempData["catalogs"])
+  {
+    <tr>
+      <td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { id = @item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = @item.Id })
+      </td>
+      <td>@item.Id</td>
+      <td>@item.Code</td>
+      <td>@item.Description</td>
+      <td>
+        @{
+          if (item.Products != null && item.Products.Any())
+          {
+            <span>@string.Join(",", item.Products.Select(x => x.Code.ToString()).ToArray())</span>
+          }
+        }
+      </td>
+    </tr>
+  }
+
+</table>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<select id="cmb-catalog"  onchange="onChangeCatalog(this)">
+  @foreach (var item in (IEnumerable<entities.Catalog>)TempData["catalogs"])
+  {
+  <option value="@item.Id" text="@item.Code">@item.Code</option>
+  }
+  </select>
+
+
+
+<script>
+
+  function onChangeCatalog() {
+    //debugger;
+    //var secondCombo = document.getElementById("cmb-catalog");
+    //secondCombo.text = val.text;
+
+    var selectedText = $('#cmb-catalog option:selected').text()
+    alert(selectedText);
+  }
+
+</script>

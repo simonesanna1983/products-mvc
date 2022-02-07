@@ -1,0 +1,52 @@
+﻿
+@{
+  ViewBag.Title = "Product";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<form>
+  <label id="lblid">ID: @ViewBag.Id</label><br><br><br><br>
+  <label id="lblcode">Code*</label>
+  <input type="text" id="txtcode" name="txtcode" value="@ViewBag.Code"><br><br>
+  <label id="lbldesc">Description*</label>
+  <input type="text" id="txtdesc" name="txtdesc" value="@ViewBag.Description"><br><br>
+  <input type="button" value="Submit" onclick="OnValidation()">
+</form>
+
+
+
+<script>
+
+  function OnValidation() {
+
+    var isValid = true;
+
+    var code = $('#txtcode');
+    var lblcode = $('#lblcode');
+    if (code.val() !== '' && code.val().length >= 10 && code.val().length <= 50) {
+      lblcode.css("color", "black");
+
+    } else {
+      lblcode.css("color", "red");
+      isValid = false;
+    }
+
+
+    var desc = $('#txtdesc');
+    var lbldesc = $('#lbldesc');
+    if (desc.val() !== '' && desc.val().length >= 10 && desc.val().length <= 50) {
+      lbldesc.css("color", "black");
+    } else {
+      lbldesc.css("color", "red");
+      isValid = false;
+    }
+
+    if (isValid) {
+      alert("To Be Submitted")
+    }
+
+  }
+</script>

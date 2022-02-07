@@ -32,6 +32,7 @@ namespace products_mvc.App_Start
         private void AddBindings()
         {
             ninjectKernel.Bind<IProductManager>().To<ProductManager>();
+            ninjectKernel.Bind<ICatalogManager>().To<CatalogManager>();
             ninjectKernel.Bind<IRepository>().To<InMemoryRepository>();
 
             
