@@ -15,7 +15,7 @@ namespace products_mvc.Controllers
         public ActionResult Index()
         {
             var products = _productManager.GetProducts();
-            TempData["products"] = products;
+            ViewData["products"] = products;
             return View();
         }
 
@@ -38,7 +38,7 @@ namespace products_mvc.Controllers
         {
             _productManager.AddProduct();
             var products = _productManager.GetProducts();
-            TempData["products"] = products;
+            ViewData["products"] = products;
 
             return PartialView("Index");
         }
@@ -48,7 +48,7 @@ namespace products_mvc.Controllers
             _productManager.DeleteProduct(id);
 
             var products = _productManager.GetProducts();
-            TempData["products"] = products;
+            ViewData["products"] = products;
             return PartialView("Index");
         }
 

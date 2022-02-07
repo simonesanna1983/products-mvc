@@ -15,7 +15,7 @@ namespace products_mvc.Controllers
         public ActionResult Index()
         {
             var products = _catalogManager.GetCatalog();
-            TempData["catalogs"] = products;
+            ViewData["catalogs"] = products;
             return View();
         }
 
@@ -30,7 +30,7 @@ namespace products_mvc.Controllers
         {
             _catalogManager.AddCatalog();
             var products = _catalogManager.GetCatalog();
-            TempData["catalogs"] = products;
+            ViewData["catalogs"] = products;
 
             return PartialView("Index");
         }
@@ -40,7 +40,7 @@ namespace products_mvc.Controllers
             _catalogManager.DeleteCatalog(id);
 
             var products = _catalogManager.GetCatalog();
-            TempData["catalogs"] = products;
+            ViewData["catalogs"] = products;
             return PartialView("Index");
         }
 
